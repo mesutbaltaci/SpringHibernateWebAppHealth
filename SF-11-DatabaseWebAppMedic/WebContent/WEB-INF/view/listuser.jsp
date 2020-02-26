@@ -18,6 +18,9 @@
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/plugins/slick/slick.css">
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/plugins/slick/slick-theme.css">
   <!-- FancyBox -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/add-customer-style.css">
+  
+  
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/plugins/fancybox/jquery.fancybox.min.css">
   
   <!-- Stylesheets -->

@@ -118,7 +118,7 @@
                               <a href="team">Team</a>
                         </li>
                         <li>
-                              <a href="listuser">List User</a>
+                              <a href="customer/listuser">List User</a>
                         </li>
                         <li>
                               <a href="blog">Blog</a>

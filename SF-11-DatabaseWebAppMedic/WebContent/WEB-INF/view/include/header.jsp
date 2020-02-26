@@ -16,6 +16,9 @@
   <!-- FancyBox -->
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/plugins/fancybox/jquery.fancybox.min.css">
   
+  
+
+  
   <!-- Stylesheets -->
   <link href="${pageContext.request.contextPath}/resources/css/style.css" rel="stylesheet">
   
