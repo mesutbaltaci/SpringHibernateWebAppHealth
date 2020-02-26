@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 
@@ -218,6 +219,20 @@
                     
                     <input type="button" value="Add Customer" onclick="window.location.href='showFormForAdd'; return false;"
                     class="btn-primary">
+                    
+                 <form:form action="searchCustomer" method="GET" class="row">
+                            
+                            <div class="col-md-10 col-sm-10 col-xs-10">                      
+                            Search Customer:
+                            	<input type="text" name="theCustomerName" class="form-control main" />
+                             </div>                        
+                      		
+                      		<div class="col-md-4 col-sm-4 col-xs-4"> 
+                            	<input type="submit" class="btn btn-style-one" value="Search"/>
+                        	</div>
+                    </form:form>
+                                      
+                    
                         <h3>List Customer</h3>
                     </div>
                    
@@ -227,14 +242,31 @@
                     		<th class="col-md-4 col-sm-4 col-xs-4"> First Name </th>
                     		<th class="col-md-4 col-sm-4 col-xs-4"> Last Name </th>
                     		<th class="col-md-4 col-sm-4 col-xs-4">  Email </th>
+                    		<th class="col-md-4 col-sm-4 col-xs-4"> Action</th>
+                    		<th class="col-md-4 col-sm-4 col-xs-4"> Delete</th>
                     		
                     	</tr>
                     
                     <c:forEach var="tempCustomer" items="${customers}">
+                    
+                    <c:url var="updateLink" value="/customer/showFormForUpdate">
+                    	<c:param name="customerId" value="${tempCustomer.id}" />
+                    </c:url>
+                    
+                    <c:url var="deleteLink" value="/customer/deleteUser">
+                    	<c:param name="customerId" value="${tempCustomer.id}" />
+                    </c:url>
+                    
+                    
                    		 <tr>
 							<td class="col-md-4 col-sm-4 col-xs-4"> ${tempCustomer.firstName} </td>  
 							<td class="col-md-4 col-sm-4 col-xs-4"> ${tempCustomer.lastName} </td> 
-							<td class="col-md-4 col-sm-4 col-xs-4"> ${tempCustomer.email} </td>  
+							<td class="col-md-4 col-sm-4 col-xs-4"> ${tempCustomer.email} </td> 
+							<td class="col-md-4 col-sm-4 col-xs-4"> <a href="${updateLink}"> Update</a> </td>  
+							<td class="col-md-4 col-sm-4 col-xs-4"> <a href="${deleteLink}" 
+								onclick="if(!(confirm('Are you sure you want to delete this customer?'))) return false"> Delete</a> </td>  
+								
+							
 						</tr>                 
                     </c:forEach>
                     

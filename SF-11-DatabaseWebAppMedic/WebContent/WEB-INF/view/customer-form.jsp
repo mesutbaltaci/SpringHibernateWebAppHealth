@@ -217,6 +217,8 @@
                 <div class="contact-area style-two">
                     <h3>Save Customer</h3>
                     <form:form action="saveCustomer" modelAttribute="customer" method="POST" class="row">
+                    
+                    <form:hidden path="id"/>
                         <!-- name -->
                         <div>
                             <label>First Name:</label><form:input path="firstName" class="form-control main" />
@@ -233,7 +235,7 @@
                         
                         <!-- submit button -->
                         <div>
-                            <button class="btn btn-style-one" type="submit">Add Customer</button>
+                            <button class="btn btn-style-one" type="submit">Save</button>
                             <a href="${pageContext.request.contextPath}/customer/listuser">Back to List</a>
                         </div>
                     </form:form>

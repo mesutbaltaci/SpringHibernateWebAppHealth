@@ -40,7 +40,45 @@ public class CustomerDAOImp implements CustomerDAO {
 	public void saveCustomer(Customer theCustomer) {
 		
 		Session currentSession = sessionFactory.getCurrentSession();
-		currentSession.save(theCustomer);
+		
+		currentSession.saveOrUpdate(theCustomer);
+	}
+
+	@Override
+	public Customer getCustomer(int theId) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		Customer theCustomer = currentSession.get(Customer.class,theId);
+		return theCustomer;
+	}
+
+	@Override
+	public void deleteUser(int theId) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		Query theQuery = currentSession.createQuery("delete from Customer where id=:customerId");
+		theQuery.setParameter("customerId", theId);
+		theQuery.executeUpdate();
+		
+	}
+
+	@Override
+	public List<Customer> searchCustomers(String theCustomerName) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		Query theQuery = null;
+		
+		if (theCustomerName!=null && theCustomerName.trim().length()>0) {
+			theQuery= currentSession.createQuery("from Customer where lastName=: theName",Customer.class);
+			theQuery.setParameter("theName", theCustomerName);
+		}	
+			else {
+				currentSession.createQuery("from Customer order by lastName", Customer.class);
+			}
+		
+		List<Customer> customers = theQuery.getResultList();
+		System.out.println(customers.size());
+		return customers;
+				
+				
+		
 	}
 
 }
