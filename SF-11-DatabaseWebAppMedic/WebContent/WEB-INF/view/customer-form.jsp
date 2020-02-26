@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
     
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 
@@ -212,37 +213,30 @@
 <section class="blog-section section style-three pb-0">
     <div class="container">
         <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="col-md-4 col-sm-4 col-xs-4">
                 <div class="contact-area style-two">
-                    <div class="section-title col-md-4 col-sm-4 col-xs-4">
-                    
-                    <input type="button" value="Add Customer" onclick="window.location.href='showFormForAdd'; return false;"
-                    class="btn-primary">
-                        <h3>List Customer</h3>
-                    </div>
-                   
-                    <div id="content">
-                    <table>
-                    	<tr>
-                    		<th class="col-md-4 col-sm-4 col-xs-4"> First Name </th>
-                    		<th class="col-md-4 col-sm-4 col-xs-4"> Last Name </th>
-                    		<th class="col-md-4 col-sm-4 col-xs-4">  Email </th>
-                    		
-                    	</tr>
-                    
-                    <c:forEach var="tempCustomer" items="${customers}">
-                   		 <tr>
-							<td class="col-md-4 col-sm-4 col-xs-4"> ${tempCustomer.firstName} </td>  
-							<td class="col-md-4 col-sm-4 col-xs-4"> ${tempCustomer.lastName} </td> 
-							<td class="col-md-4 col-sm-4 col-xs-4"> ${tempCustomer.email} </td>  
-						</tr>                 
-                    </c:forEach>
-                    
-                    </table>
-                    
-                    
-                    
-                    </div>
+                    <h3>Save Customer</h3>
+                    <form:form action="saveCustomer" modelAttribute="customer" method="POST" class="row">
+                        <!-- name -->
+                        <div>
+                            <label>First Name:</label><form:input path="firstName" class="form-control main" />
+                        </div><br/>
+                        
+                        <!-- email -->
+                        <div >
+                             <label>Last Name:</label><form:input path="lastName" class="form-control main" />
+                        </div><br/>
+                        <!-- phone -->
+                        <div >
+                            <label>Email:</label> <form:input path="email" class="form-control main" />
+                        </div><br/>
+                        
+                        <!-- submit button -->
+                        <div>
+                            <button class="btn btn-style-one" type="submit">Add Customer</button>
+                            <a href="${pageContext.request.contextPath}/customer/listuser">Back to List</a>
+                        </div>
+                    </form:form>
                    
                     
                     
